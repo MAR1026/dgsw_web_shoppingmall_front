@@ -1,0 +1,52 @@
+.app-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: darkslategray;
+
+.menubar {
+  list-style-type: none;
+
+li {
+  float: left;
+a{
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+
+&:hover {
+   color: yellow;
+   border-bottom: 3px solid yellow;
+ }
+}
+}
+}
+
+.loginbtn {
+  float: right;
+  margin-top: 1em;
+  margin-right: 2em;
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  font-size:1em;
+  cursor:pointer;
+}
+
+
+}
+
+button {
+  margin: .2em;
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  font-size:1em;
+  cursor:pointer;
+}
+
+.app-body {
+  position: absolute;
+  top: 60px;
+}
