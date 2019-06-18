@@ -14,14 +14,11 @@ class Home extends Component {
         return (
             <div className="App">
                 <header className="app-header">
-                    <button className='loginbtn' onClick={this.onLogin}>{this.state.loginStatus}</button>
+                    <Link to='/login'><button className='loginbtn'>{this.state.loginStatus}</button></Link>
+                    <Link to='/join'><button className='loginbtn'>회원가입</button></Link>
                 </header>
             </div>
         );
-    }
-
-    onLogin = () => {
-        console.log("1234");
     }
 }
 
