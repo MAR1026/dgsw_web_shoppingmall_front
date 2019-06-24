@@ -5,37 +5,40 @@
   height: 60px;
   background-color: darkslategray;
 
-.menubar {
-  list-style-type: none;
+  .menubar {
+    position: fixed;
+    list-style-type: none;
 
-li {
-  float: left;
-a{
-  color: white;
-  text-decoration: none;
-  padding: 20px;
+    li {
+      float: left;
+      color: white;
+      margin-right: 1em;
+      a{
+        color: white;
+        text-decoration: none;
+        padding: 20px;
 
-&:hover {
-   color: yellow;
-   border-bottom: 3px solid yellow;
- }
-}
-}
+        &:hover {
+          color: yellow;
+          border-bottom: 3px solid yellow;
+        }
+      }
+    }
+  }
+
+  .loginbtn {
+    float: right;
+    margin-top: 1em;
+    margin-right: 1em;
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+  }
 }
 
-.loginbtn {
-  float: right;
-  margin-top: 1em;
-  margin-right: 2em;
-  background:#1AAB8A;
-  color:#fff;
-  border:none;
-  font-size:1em;
-  cursor:pointer;
-}
 
-
-}
 
 button {
   margin: .2em;
@@ -49,4 +52,43 @@ button {
 .app-body {
   position: absolute;
   top: 60px;
+}
+
+.product-item {
+  overflow: scroll;
+  float: left;
+  margin: 5px;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    div {
+      img {
+        width: 300px;
+      }
+    }
+  }
+}
+
+.home-body {
+  display: flex;
+  padding-top: 60px;
+
+  .event-product {
+    background-color: aliceblue;
+    width: 20%;
+    text-align: center;
+  }
+
+  .main-visual {
+    width: 60%;
+    text-align: center;
+  }
+
+  .advertise {
+    background-color: aliceblue;
+    width: 20%;
+    text-align: center;
+  }
+
 }

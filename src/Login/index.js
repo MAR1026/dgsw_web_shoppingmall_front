@@ -8,31 +8,31 @@ class Login extends Component {
 
     state = {
         password: '',
-        id: '',
+        account: '',
         goToHome: false
     };
 
     render () {
-        if(this.state.goToMain)
+        if(this.state.goToHome)
             return <Redirect to='/'/>
 
         let p = this.props.stores.UserStore;
-        if(p.user === null) {
-            return (
+
+
+        return (
+            <div>
+                <div>로그인</div>
                 <div>
-                    <div>로그인</div>
-                    <div>
-                        <input placeholder='아이디' value={this.state.account} onChange={this.updateAccount}/>
-                    </div>
-                    <div>
-                        <input placeholder='비밀번호' value={this.state.password} onChange={this.updatePassword}/>
-                    </div>
-                    <div>
-                        <button onClick={this.login}>로그인</button>
-                    </div>
+                    <input placeholder='아이디' value={this.state.account} onChange={this.updateAccount}/>
                 </div>
-            )
-        }
+                <div>
+                    <input placeholder='비밀번호' value={this.state.password} onChange={this.updatePassword}/>
+                </div>
+                <div>
+                    <button onClick={this.login}>로그인</button>
+                </div>
+            </div>
+        )
     }
 
     updateAccount = event => {
@@ -53,7 +53,7 @@ class Login extends Component {
         if (this.state.account && this.state.password && await this.props.stores.UserStore.login(this.state)) {
             this.setState({
                               ...this.state,
-                              goToMain: true
+                              goToHome: true
                           });
         }
     }
@@ -62,7 +62,7 @@ class Login extends Component {
         if(this.props.stores.UserStore.logout()) {
             this.setState({
                               ...this.state,
-                              goToMain: true
+                              goToHome: true
                           });
         }
     }

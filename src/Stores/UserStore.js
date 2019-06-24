@@ -43,7 +43,7 @@ class UserStore {
         }
     }
 
-    @action create = async (createData) => {
+    @action register = async (createData) => {
         try {
             let response = await axios({
                 url: 'http://localhost:8080/api/user/create',
