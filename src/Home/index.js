@@ -72,21 +72,7 @@ class Home extends Component {
     render() {
         return (
             <div className="App">
-                <header className="app-header">
-                    <button className='loginbtn'>장바구니</button>
-                    <button className='loginbtn'>고객센터</button>
-                    <Link to='/login'><button className='loginbtn'>{this.state.loginStatus}</button></Link>
-                    <Link to='/join'><button className='loginbtn'>회원가입</button></Link>
-                    <ul className='menubar'>
-                        <li>OO OOOO OO 쇼핑몰&nbsp;|</li>
-                        <li><Link to='/'>전체</Link></li>
-                        <li><Link to='/top'>상의</Link></li>
-                        <li><Link to='/pants'>바지</Link></li>
-                        <li><Link to='/shoes'>신발</Link></li>
-                        <li><Link to='/bag'>가방</Link></li>
-                        <li><Link to='/accessory'>소품</Link></li>
-                    </ul>
-                </header>
+
                 <div className='home-body'>
                     <nav className='event-product'>
                         <div>공동구매</div>
