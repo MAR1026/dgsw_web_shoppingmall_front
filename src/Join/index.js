@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 
 @inject('stores')
 @observer
@@ -8,7 +8,10 @@ class Join extends Component {
 
     state = {
         account: '',
+        checkAccount: '',
         password: '',
+        checkPassword: '',
+        noticePassword: '패스워드를 한번 더 입력해주세요.',
         name: '',
         tel: '',
         phone: '',
@@ -23,34 +26,43 @@ class Join extends Component {
             return <Redirect to='/'/>
 
         return (
-                <div>
-                    <div>회원가입</div>
-                    <div>
-                        <input placeholder='아이디' value={this.state.account} onChange={this.updateAccount}/>
+                <div className='join'>
+                    <div className='joinNotice'>
+                        <div>회원가입</div>
+                        <hr/>
+                        <p>00 가족을 위한 전문 쇼핑몰로 저렴한 가격과 신개념 고객서비스를 통해 고객 만족을 최우선으로 합니다.<br/> 쇼핑몰에 회원으로 가입하시면 보다 나은 서비스를 경험하실 수 있습니다.</p>
+                        <hr/>
                     </div>
                     <div>
-                        <input placeholder='비밀번호' value={this.state.password} onChange={this.updatePassword}/>
+                        희망아이디: <input placeholder='아이디' value={this.state.account} onChange={this.updateAccount}/> <button onClick={this.checkAccount}>중복확인</button> {this.state.checkAccount}
                     </div>
                     <div>
-                        <input placeholder='이름' value={this.state.name} onChange={this.updateName}/>
+                        희망패스워드: <input type='password' placeholder='비밀번호' value={this.state.password} onChange={this.updatePassword}/>
                     </div>
                     <div>
-                        <input placeholder='집 전화번호' value={this.state.tel} onChange={this.updateTel}/>
+                        패스워드확인: <input type='password' placeholder='비밀번호 확인' value={this.state.checkPassword} onChange={this.updateCheckPassword}/> {this.state.noticePassword}
                     </div>
                     <div>
-                        <input placeholder='휴대폰 번호' value={this.state.phone} onChange={this.updatePhone}/>
+                        성명: <input placeholder='이름' value={this.state.name} onChange={this.updateName}/> (이름에 공백은 제거해주세요)
                     </div>
                     <div>
-                        <input placeholder='우편 번호' value={this.state.zip} onChange={this.updateZip}/>
+                        전화번호: <input placeholder='집 전화번호' value={this.state.tel} onChange={this.updateTel}/>
                     </div>
                     <div>
-                        <input placeholder='집 주소' value={this.state.address} onChange={this.updateAddress}/>
+                        핸드폰: <input placeholder='휴대폰 번호' value={this.state.phone} onChange={this.updatePhone}/>
                     </div>
                     <div>
-                        <input placeholder='이메일' value={this.state.email} onChange={this.updateEmail}/>
+                        우편번호: <input placeholder='우편 번호' value={this.state.zip} onChange={this.updateZip}/>
+                    </div>
+                    <div>
+                        주소: <input placeholder='집 주소' value={this.state.address} onChange={this.updateAddress}/>
+                    </div>
+                    <div>
+                        이메일 주소: <input placeholder='이메일' value={this.state.email} onChange={this.updateEmail}/>
                     </div>
                     <div>
                         <button onClick={this.join}>회원가입</button>
+                        <Link to='/'><button>취소</button></Link>
                     </div>
                 </div>
             );
@@ -67,7 +79,16 @@ class Join extends Component {
         this.setState({
             ...this.state,
             password: event.target.value,
+            noticePassword: event.target.value === this.state.checkPassword ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'
         });
+    }
+
+    updateCheckPassword = event => {
+        this.setState({
+            ...this.state,
+            checkPassword: event.target.value,
+            noticePassword: event.target.value === this.state.password ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'
+          });
     }
 
     updateName = event => {
@@ -110,6 +131,23 @@ class Join extends Component {
             ...this.state,
             email: event.target.value,
         });
+    }
+
+    checkAccount = async () => {
+        console.log(this.state.account);
+        if(this.state.account) {
+            if(await this.props.stores.UserStore.checkAccount(this.state.account)) {
+                this.setState({
+                                  ...this.state,
+                                  checkAccount: '이미 존재하는 아이디입니다.'
+                              });
+            } else {
+                this.setState({
+                                  ...this.state,
+                                  checkAccount: '사용가능한 아이디입니다.'
+                              });
+            }
+        }
     }
 
     join = async () => {

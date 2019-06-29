@@ -1,29 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap&subset=korean');
+#root {
+  height: 100vh;
+  font-family: 'Noto Serif KR', serif;
+}
+
 .app-header {
   position: fixed;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 6vh;
   background-color: darkslategray;
 
   .menubar {
-    position: fixed;
     list-style-type: none;
-
-    li {
+    >li {
       float: left;
       color: white;
       margin-right: 1em;
-      a{
+      >a{
         color: white;
         text-decoration: none;
-        padding: 20px;
+        padding: 8px 16px;
+        text-align: center;
 
-        &:hover {
-          color: yellow;
-          border-bottom: 3px solid yellow;
-        }
       }
     }
+    >li:hover >a {
+      color: yellow;
+    }
+
+    >li:hover .subMenu {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .subMenu {
+    position: absolute;
+    list-style-type: none;
+    background: #182952;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: -40px;
+    width: 150px;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all .3s ease .15s;
+    -moz-transition: all .3s ease .15s;
+    -o-transition: all .3s ease .15s;
+    -ms-transition: all .3s ease .15s;
+    transition: all .3s ease .15s;
+  }
+
+  .subMenu > li {
+    padding: 16px 28px;
+  }
+
+  .subMenu > li > a {
+    color: white;
+    text-decoration: none;
   }
 
   .loginbtn {
@@ -54,49 +90,98 @@ button {
 }
 
 .product-item {
-  overflow: scroll;
-  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 5px;
   text-align: center;
 
   a {
     text-decoration: none;
+    margin: 0 15px;
   }
+}
+
+.event-product {
+  height: 84vh;
+  overflow: scroll;
+  background-color: aliceblue;
+  width: 20%;
+  text-align: center;
 }
 
 .home-body {
   display: flex;
-
   .event-product {
+    height: 84vh;
+    overflow: scroll;
     background-color: aliceblue;
     width: 20%;
     text-align: center;
   }
 
   .main-visual {
+    height: 84vh;
+    overflow: scroll;
     width: 60%;
     text-align: center;
   }
 
   .advertise {
+    height: 84vh;
+    overflow: scroll;
     background-color: aliceblue;
     width: 20%;
     text-align: center;
   }
 }
 
-.product-body {
-  display: flex;
-
-  .relative-product {
-    width: 20%;
-    text-align: center;
+.join {
+  height : 84vh;
+  .joinNotice {
+    div {
+      font-size: 24px;
+    }
+    p {
+      text-align: center;
+    }
+    hr {
+      margin: 10px 15px;
+    }
   }
 
-  .product-view {
+  div {
+    margin-top: 7px;
+    margin-left: 15px;
+  }
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div {
+    img {
+      width: 200px;
+    }
+  }
+  .form {
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 10px;
+  }
+}
+
+.product-body {
+  display: flex;
+  height: 84vh;
+  width: 100vw;
+  .product-view {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -108,7 +193,7 @@ button {
 
 .product-info {
   display: flex;
-
+  width: 85vw;
   .info {
     display: flex;
     flex-direction: column;
@@ -125,28 +210,81 @@ button {
 .product-detail {
   text-align: center;
 
-  .mark {
-    background-color: seashell;
+  .comments {
     border: 1px solid black;
-    margin-bottom: .1em;
+    width: 70%;
+
+    margin: 0 auto;
+    th, td {
+      border: 1px solid black;
+    }
   }
 }
 
-
-table {
+.mark {
+  background-color: seashell;
   border: 1px solid black;
-  width: 70%;
+  margin-bottom: .1em;
   text-align: center;
+  margin-left: 30px;
+  margin-right: 30px;
+
 }
 
-th, td {
-  border: 1px solid black;
+.order {
+  height: 84vh;
+  width: 100vw;
 
-  img {
-    width: 100px;
+  text-align: center;
+  table {
+    border: 1px solid black;
+    width: 70%;
+
+    margin: 0 auto;
   }
+
+  th, td {
+    border: 1px solid black;
+
+    img {
+      width: 100px;
+    }
+  }
+
+
 }
+
+.sales {
+  text-decoration: line-through;
+  color: mediumvioletred;
+}
+
+.productContent {
+  font-size: 4px;
+}
+
 
 img {
   width: 300px;
 }
+
+footer{
+  display: flex;
+  width : 100vw;
+  height : 10vh;
+  border-top: 1px solid black;
+  justify-content: center;
+  .footerDiv {
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    .shopname {
+
+    }
+    .shopinfo {
+      margin-left: 20px;
+      font-size: 12px;
+    }
+  }
+}
+

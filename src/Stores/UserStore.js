@@ -14,6 +14,25 @@ class UserStore {
         UserStore.__instance = this;
     }
 
+    @action checkAccount = async (account) => {
+        try {
+            let response = await axios({
+                url: `http://localhost:8080/api/user/find/${account}`,
+                method: 'post',
+                timeout: 3000,
+            });
+
+            if(response.status === 200 && response.deta !== "")
+                return true;
+            else
+                return false;
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+    }
+
+    @observable loginString = '로그인'
     @observable user = null;
     @action login = async (loginData) => {
         try {
@@ -28,9 +47,9 @@ class UserStore {
                 data: JSON.stringify(loginData)
             });
 
-            console.log(response);
-
             if(response.status === 200 && response.data !== "") {
+                console.log(response);
+                this.loginString = '로그아웃';
                 this.user = response.data;
                 return true;
             } else {
@@ -41,6 +60,11 @@ class UserStore {
             alert("오류로 인한 로그인 실패 : " + error.toString());
             return false;
         }
+    }
+
+    @action logout = () => {
+        this.user = null;
+        return true;
     }
 
     @action register = async (createData) => {
